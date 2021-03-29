@@ -9,24 +9,26 @@ import java.util.Date;
 public class ReceiptDO extends ReceiptDOKey {
     private String receivingNum;//收文号
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date receivingDateOfReceipt;//收文时间
 
     @NotBlank(message = "来文标题不能为空",groups = ValidationGroups.Insert.class)
     private String receivingTitle;//来文标题
 
+    @NotBlank(message = "来文单位不能为空",groups = ValidationGroups.Insert.class)
     private String receivingUnitOfCommun;//来文单位
 
     private String fileNo;//文件编号
 
     private Integer number;//份数
 
-    @NotBlank(message = "来文密级不能为空",groups = ValidationGroups.Insert.class)
-    private  String secretLevel;//密级
+    private String secretLevel;//密级
 
     private String receivingDegreeOfUrgency;//紧急程度
 
     private String receivingDataStatus;//数据状态
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date timeLimit;//办结时间
 
     private String creater;
@@ -50,6 +52,25 @@ public class ReceiptDO extends ReceiptDOKey {
     private String namef;
     private String namev;
     private String names;
+
+    private String receiptReason;//局长审核
+    private String receiptReasonl;//分局审核
+
+    public String getReceiptReason() {
+        return receiptReason;
+    }
+
+    public void setReceiptReason(String receiptReason) {
+        this.receiptReason = receiptReason== null ? null : receiptReason.trim();
+    }
+
+    public String getReceiptReasonl() {
+        return receiptReasonl;
+    }
+
+    public void setReceiptReasonl(String receiptReasonl) {
+        this.receiptReasonl = receiptReasonl== null ? null : receiptReasonl.trim();
+    }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date dateo;
@@ -262,7 +283,7 @@ public class ReceiptDO extends ReceiptDOKey {
     }
 
     public void setSecretLevel(String secretLevel) {
-        this.secretLevel = secretLevel== null ? null : secretLevel.trim();;
+        this.secretLevel = secretLevel== null ? null : secretLevel.trim();
     }
 
     public String getReceivingDegreeOfUrgency() {
